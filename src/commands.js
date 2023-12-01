@@ -3,7 +3,7 @@ const { REST, Routes } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 const commands = [];
-const foldersPath = path.join('C:/Users/justi/OneDrive/Documents/DMSGcbot', 'commands');
+const foldersPath = path.join('C:/Users/justi/OneDrive/Documents/maangbot', 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 const rest = new REST({ version: '10'}).setToken(process.env.TOKEN);

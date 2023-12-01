@@ -3,7 +3,8 @@ var fs = require('fs');
 var path = require('path');
 const mongoose = require('mongoose');
 const level = require('../models/Level')
-const { InteractionType, Client, IntentsBitField, ActivityType, Collection, Events, IntegrationExpireBehavior, ButtonInteraction, CommandInteraction, Message, EmbedBuilder } = require('discord.js');
+const { InteractionType, Client, IntentsBitField, ActivityType, Collection, Events, EmbedBuilder } = require('../node_modules/discord.js');
+
 
 const client = new Client({
     intents: [
@@ -21,7 +22,7 @@ const client = new Client({
     
 })();
 client.commands = new Collection();
-const foldersPath = path.join('C:/Users/justi/OneDrive/Documents/DMSGcbot', 'commands');
+const foldersPath = path.join('C:/Users/justi/OneDrive/Documents/maangbot', 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
@@ -88,10 +89,13 @@ client.on(Events.MessageCreate, async message => {
     }
 })
 client.on(Events.InteractionCreate, async interaction => {
+    if(interaction.isButton()){
+        return;
+    }
 	if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
 		const command = interaction.client.commands.get(interaction.commandName);
 		if (!command) {
-			console.error(`No command matching ${interaction.commandName} was found.`);
+			console.error(`No command matching ${interaction.commandName} was found. (Autocomplete)`);
 			return;
 		}
 
@@ -104,7 +108,7 @@ client.on(Events.InteractionCreate, async interaction => {
             const command = interaction.client.commands.get(interaction.commandName);
     
             if (!command) {
-                console.error(`No command matching ${interaction.commandName} was found.`);
+                console.error(`No command matching ${interaction.commandName} was found. (slash command)`);
                 return;
             }
     

@@ -26,7 +26,8 @@ module.exports = {
         .addFields({name: `Joined discord:`, value: "`" + new Date(user.createdTimestamp).toLocaleDateString() + "`", inline: true}
         , {name: `Joined this server:`, value: "`" + new Date(member.joinedTimestamp).toLocaleDateString() + "`", inline: true}
         , {name: `Number of roles:`, value: "`" + `${Array.from(member.roles.cache).length - 1}` + "`", inline: true}
-        , {name: `Role w/ highest position:`, value: "`" + `${member.roles.highest.name}` + "`", inline: true})
+        , {name: `Role w/ highest position:`, value: "`" + `${member.roles.highest.name}` + "`", inline: true}
+        , {name: `Current trivia streak:`, value: "`" + `${fetchedLevel.streak}` + "`", inline: true})
         .setFooter({text: `Run by ${interaction.user.username}`, iconURL: interaction.user.avatarURL()})
         .setTimestamp()
         if(member.presence?.status == null){

@@ -9,10 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "base-64": "^1.0.0",
     "canvacord": "^5.4.10",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
+    "he": "^1.2.0",
+    "html-decoder": "^1.0.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.1",
     "nodemon": "^3.0.1",

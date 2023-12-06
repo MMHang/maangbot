@@ -73,7 +73,7 @@ module.exports = {
         const row = new ActionRowBuilder()
 		    .addComponents(previous, next);
         let message = await interaction.followUp({embeds: [leaderbed], components: [row]});
-        let collector = message.createMessageComponentCollector({ componentType: ComponentType.Button, time: 15000 });
+        let collector = await message.createMessageComponentCollector({ componentType: ComponentType.Button, time: 1000000 });
         collector.on('collect', async i => {
             await i.deferUpdate();
             leaderboard = ''
@@ -119,7 +119,7 @@ module.exports = {
                     leaderbed.setTitle(levels.length + " / " + levels.length + ` Users (Page ${currentPage + 1} / ` + Math.ceil(levels.length / usersperpage) + ")")
                 }
                 message = await interaction.editReply({embeds: [leaderbed], components: [row]});
-                collector = message.createMessageComponentCollector({ componentType: ComponentType.Button, time: 15000 });
+                collector = await message.createMessageComponentCollector({ componentType: ComponentType.Button, time: 1000000 });
             } else {
                 i.followUp({ content: `These buttons aren't for you!`, ephemeral: true });
             }

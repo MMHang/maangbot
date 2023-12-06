@@ -18,6 +18,10 @@ const levelSchema = new Schema({
     level: {
         type: Number,
         default: 0,
+    },
+    streak: {
+        type: Number,
+        default: 0,
     }
 });
 module.exports = model('Level', levelSchema);

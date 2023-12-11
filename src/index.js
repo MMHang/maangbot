@@ -105,6 +105,10 @@ client.on(Events.InteractionCreate, async interaction => {
 			console.error(error);
 		}
     } else if(interaction.isCommand){
+            if(!interaction.inGuild()){
+                await interaction.reply('This can only be used in a server.');
+                return;
+            }
             const command = interaction.client.commands.get(interaction.commandName);
     
             if (!command) {

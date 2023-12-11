@@ -25,6 +25,10 @@ module.exports = {
                 $sort: {level: -1, xp: -1}
             }
         ])
+        if(usersperpage > levels.length){
+            interaction.followUp("That's more than the amount of users. Do something smaller!")
+            return;
+        }
         let userin = false;
         for(var i = currentPage * usersperpage; i < usersperpage; i++){
             if(i + (usersperpage * currentPage) > levels.length){

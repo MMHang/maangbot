@@ -176,7 +176,13 @@ module.exports = {
                     await Level.save();
                     const corrbed = new EmbedBuilder()
                     .setTitle("Great Job!")
-                    .setDescription(`${i.user.username} got it right and won ${newxp} xp! Their current streak is at **${Level.streak}**. The answer was ${String.fromCharCode(parseInt(i.customId) + 64)}: **${decoder.decode(data.results[0].correct_answer)}**.`)
+                    if(Level.streak > Level.highestStreak){
+                        Level.highestStreak = Level.streak;
+                        await Level.save();
+                        corrbed.setDescription(`${i.user.username} got it right and won ${newxp} xp! Their current streak is at **${Level.streak}**, a **NEW BEST**! The answer was ${String.fromCharCode(parseInt(i.customId) + 64)}: **${decoder.decode(data.results[0].correct_answer)}**.`)
+                    } else {
+                        corrbed.setDescription(`${i.user.username} got it right and won ${newxp} xp! Their current streak is at **${Level.streak}**. The answer was ${String.fromCharCode(parseInt(i.customId) + 64)}: **${decoder.decode(data.results[0].correct_answer)}**.`)
+                    }
                     row.setComponents(A, B, C, D)
                     interaction.editReply({embeds: [trivbed, corrbed], components: [row]})
                     
